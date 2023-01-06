@@ -5,9 +5,11 @@ import React from "react";
 interface Props {
   href: string;
   text: string;
+  hoverColor?: string;
   icon?: any;
 }
-export function SideLink({ href, text }: Props) {
+
+export function SideLink({ href, text, hoverColor = "green.300" }: Props) {
   return (
     <Link href={href}>
       <Flex
@@ -17,9 +19,12 @@ export function SideLink({ href, text }: Props) {
         borderRadius="lg"
         role="group"
         cursor="pointer"
+        transition="transform 0.2s ease-in"
         _hover={{
-          bg: "cyan.400",
+          bg: hoverColor,
           color: "white",
+          fontSize: "16px",
+          transform: "scale(1.1)",
         }}
       >
         <Text ml={5}>{text}</Text>
