@@ -16,7 +16,7 @@ export function SideBar() {
   return (
     <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
       <DrawerContent py={5}>
-        <DrawerHeader>HeathFinder</DrawerHeader>
+        <DrawerHeader>HealthFinder</DrawerHeader>
         <DrawerBody>
           <Box w="full" pos="fixed" h="full">
             <SideLink href="/" text="Início" />

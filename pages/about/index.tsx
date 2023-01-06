@@ -4,7 +4,7 @@ import { Head } from "components";
 export default function About() {
   return (
     <>
-      <Head title="Heath Finder - About" />
+      <Head title="Health Finder - About" />
       <main>
         <Text>Page in construction</Text>
       </main>
