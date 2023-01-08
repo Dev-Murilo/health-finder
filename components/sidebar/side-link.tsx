@@ -11,8 +11,9 @@ interface Props {
 
 export function SideLink({ href, text, hoverColor = "green.300" }: Props) {
   return (
-    <Link href={href}>
+    <Link href={href} data-testid="side-link">
       <Flex
+        data-testid="side-link-container"
         align="center"
         py={4}
         mr={10}
@@ -27,7 +28,9 @@ export function SideLink({ href, text, hoverColor = "green.300" }: Props) {
           transform: "scale(1.1)",
         }}
       >
-        <Text ml={5}>{text}</Text>
+        <Text ml={5} data-testid="side-link-text">
+          {text}
+        </Text>
       </Flex>
     </Link>
   );
