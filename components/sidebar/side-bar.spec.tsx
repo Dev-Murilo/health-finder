@@ -1,9 +1,18 @@
-import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import { SideBar } from "./side-bar";
 
 describe("Testing side bar component", () => {
-  it("Should to have correct links and texts", () => {
-    const { getAllByTestId } = render(<SideBar />);
+  it("Should to have correct links and texts", async () => {
+    const user = userEvent.setup();
+    const { getAllByTestId } = render(
+      <SideBar>
+        <p>testing sidebar</p>
+      </SideBar>
+    );
+
+    await user.click(screen.getByTestId("open-menu-button", { trim: true }));
+
     const links = getAllByTestId("side-link");
 
     expect(links[0].getAttribute("href")).toBe("/");
