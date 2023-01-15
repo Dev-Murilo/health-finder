@@ -6,8 +6,9 @@ import { SideBar } from "components/sidebar/side-bar";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
-      <SideBar />
-      <Component {...pageProps} />
+      <SideBar>
+        <Component {...pageProps} />
+      </SideBar>
     </ChakraProvider>
   );
 }
