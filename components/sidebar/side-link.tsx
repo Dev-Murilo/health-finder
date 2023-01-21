@@ -6,10 +6,15 @@ interface Props {
   href: string;
   text: string;
   hoverColor?: string;
-  icon?: any;
+  icon?: React.ReactNode;
 }
 
-export function SideLink({ href, text, hoverColor = "green.300" }: Props) {
+export function SideLink({
+  href,
+  text,
+  hoverColor = "green.300",
+  icon,
+}: Props) {
   return (
     <Link href={href} data-testid="side-link">
       <Flex
@@ -21,6 +26,7 @@ export function SideLink({ href, text, hoverColor = "green.300" }: Props) {
         role="group"
         cursor="pointer"
         transition="transform 0.2s ease-in"
+        px={3}
         _hover={{
           bg: hoverColor,
           color: "white",
@@ -28,6 +34,7 @@ export function SideLink({ href, text, hoverColor = "green.300" }: Props) {
           transform: "scale(1.1)",
         }}
       >
+        {icon}
         <Text ml={5} data-testid="side-link-text">
           {text}
         </Text>
