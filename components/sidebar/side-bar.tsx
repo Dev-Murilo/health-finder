@@ -10,9 +10,15 @@ import {
   VStack,
   StackProps,
   BoxProps,
+  Flex,
+  Image,
+  HStack,
+  IconButton,
 } from "@chakra-ui/react";
 import React from "react";
 import { SideLink } from "./side-link";
+import { AiOutlineMenu } from "react-icons/ai";
+import { FaBookOpen, FaHome, FaSearch } from "react-icons/fa";
 
 export interface SideBarProps {
   children: React.ReactNode;
@@ -38,11 +44,34 @@ export function SideBar({ children }: SideBarProps) {
     },
   };
 
+  const getSiderBarHeader = (): React.ReactNode => {
+    return (
+      <HStack width="100%" justify="start" px={10}>
+        <Image
+          objectFit="contain"
+          src="/images/heath-finder-logo.png"
+          boxSize="100px"
+          alt=""
+        />
+        <Button
+          leftIcon={<AiOutlineMenu />}
+          variant="ghost"
+          aria-label="Open menu"
+          onClick={onOpen}
+          data-testid="open-menu-button"
+          ml={10}
+          my="auto"
+          size="lg"
+        >
+          Menu
+        </Button>
+      </HStack>
+    );
+  };
+
   return isOpen ? (
     <VStack {...styles.VStack}>
-      <Button type="button" onClick={onClose} data-testid="close-menu-button">
-        Fechar menu
-      </Button>
+      {getSiderBarHeader()}
       <Box {...styles.box}>{children}</Box>
       <Drawer
         placement="left"
@@ -53,12 +82,25 @@ export function SideBar({ children }: SideBarProps) {
       >
         <DrawerContent py={5}>
           <DrawerCloseButton />
-          <DrawerHeader>HealthFinder</DrawerHeader>
+          <DrawerHeader>
+            <Flex width="100%" justify="center" align="center">
+              <Image
+                objectFit="contain"
+                src="/images/heath-finder-logo.png"
+                boxSize="150px"
+                alt=""
+              />
+            </Flex>
+          </DrawerHeader>
           <DrawerBody>
             <Box w="full" pos="fixed" h="full">
-              <SideLink href="/" text="Início" />
-              <SideLink href="/search" text="Buscar serviços" />
-              <SideLink href="/about" text="Sobre" />
+              <SideLink href="/" text="Início" icon={<FaHome />} />
+              <SideLink
+                href="/search"
+                text="Buscar serviços"
+                icon={<FaSearch />}
+              />
+              <SideLink href="/about" text="Sobre" icon={<FaBookOpen />} />
             </Box>
           </DrawerBody>
         </DrawerContent>
@@ -66,9 +108,7 @@ export function SideBar({ children }: SideBarProps) {
     </VStack>
   ) : (
     <VStack {...styles.VStack}>
-      <Button type="button" onClick={onOpen} data-testid="open-menu-button">
-        Abrir menu
-      </Button>
+      {getSiderBarHeader()}
       <Box {...styles.box}>{children}</Box>
     </VStack>
   );
